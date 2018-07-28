@@ -36,6 +36,8 @@
     "medium-editor-tables": "^0.6.1"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "standard": "^10.0.3",
     "webpack": "^3.5.5"
   },
