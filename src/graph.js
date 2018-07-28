@@ -1,7 +1,6 @@
 'use strict'
 
-global.SimpleRDF = require('simplerdf')
-// global.SimpleRDF = (typeof ld !== 'undefined') ? ld.SimpleRDF : undefined;
+global.SimpleRDF = (typeof ld !== 'undefined') ? ld.SimpleRDF : undefined;
 
 const Config = require('./config')
 const doc = require('./doc')

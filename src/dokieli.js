@@ -14,12 +14,9 @@ const inbox = require('./inbox')
 const util = require('./util')
 const storage = require('./storage')
 global.auth = require('./auth')
-global.MediumEditor = require('medium-editor')
-const MediumEditorTable = require('medium-editor-tables')
 
 if(typeof DO === 'undefined'){
-global.SimpleRDF = require('simplerdf')
-// global.SimpleRDF = (typeof ld !== 'undefined') ? ld.SimpleRDF : undefined;
+global.SimpleRDF = (typeof ld !== 'undefined') ? ld.SimpleRDF : undefined;
 var DO = {
   fetcher,
 
