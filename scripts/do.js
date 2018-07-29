@@ -7,7 +7,7 @@
 		exports["DO"] = factory(require("fetch"));
 	else
 		root["DO"] = factory(root["fetch"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_10__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -1938,7 +1938,12 @@ var DO = {
   C: __webpack_require__(0),
 
   U: {
-    //Tries to authenticate with given URI. If authenticated, returns the 'User' header value.
+    /**
+     * Tries to authenticate with given URI. If authenticated, returns the 'User' header value.
+     * 
+     * @param url {string}
+     * @returns {Promise<any>}
+    */
     authenticateUser: function(url) {
       url = url || window.location.origin + window.location.pathname;
       var reasons = [];
@@ -2070,6 +2075,10 @@ var DO = {
       });
     },
 
+    /**
+     * @param {Graph} s  a resource
+     * @returns {string}
+     */
     getResourceLabel: function(s) {
       return s.dctermstitle || s['http://purl.org/dc/elements/1.1/title'] || auth.getAgentName(s) || undefined;
     },
