@@ -14,16 +14,22 @@ const inbox = require('./inbox')
 const util = require('./util')
 const storage = require('./storage')
 global.auth = require('./auth')
+const ld = require('./simplerdf')
 
 if(typeof DO === 'undefined'){
-global.SimpleRDF = (typeof ld !== 'undefined') ? ld.SimpleRDF : undefined;
+global.SimpleRDF = ld.SimpleRDF
 var DO = {
   fetcher,
 
   C: require('./config'),
 
   U: {
-    //Tries to authenticate with given URI. If authenticated, returns the 'User' header value.
+    /**
+     * Tries to authenticate with given URI. If authenticated, returns the 'User' header value.
+     *
+     * @param url {string}
+     * @returns {Promise<string>}
+    */
     authenticateUser: function(url) {
       url = url || window.location.origin + window.location.pathname;
       var reasons = [];

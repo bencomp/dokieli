@@ -31,7 +31,6 @@
     {
       "matches": ["<all_urls>"],
       "js": [
-        "scripts/simplerdf.js",
         "scripts/medium-editor.min.js",
         "scripts/medium-editor-tables.min.js",
         "scripts/do.js",
