@@ -5,6 +5,7 @@ const Config = require('./config')
 const doc = require('./doc')
 const uri = require('./uri')
 const graph = require('./graph')
+const ld = require('./simplerdf')
 
 const DEFAULT_CONTENT_TYPE = 'text/html; charset=utf-8'
 const LDP_RESOURCE = '<http://www.w3.org/ns/ldp#Resource>; rel="type"'

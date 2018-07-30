@@ -6942,7 +6942,7 @@ module.exports = {
 exports = module.exports = __webpack_require__(58);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(41);
+exports.Writable = __webpack_require__(42);
 exports.Duplex = __webpack_require__(14);
 exports.Transform = __webpack_require__(61);
 exports.PassThrough = __webpack_require__(119);
@@ -6954,7 +6954,7 @@ exports.PassThrough = __webpack_require__(119);
 
 var Buffer = __webpack_require__(2).Buffer
 var Transform = __webpack_require__(16).Transform
-var StringDecoder = __webpack_require__(42).StringDecoder
+var StringDecoder = __webpack_require__(43).StringDecoder
 var inherits = __webpack_require__(0)
 
 function CipherBase (hashMode) {
@@ -7108,7 +7108,7 @@ util.inherits = __webpack_require__(0);
 /*</replacement>*/
 
 var Readable = __webpack_require__(58);
-var Writable = __webpack_require__(41);
+var Writable = __webpack_require__(42);
 
 util.inherits(Duplex, Readable);
 
@@ -7216,7 +7216,7 @@ function forEach(xs, f) {
 
 module.exports = Stream;
 
-var EE = __webpack_require__(40).EventEmitter;
+var EE = __webpack_require__(41).EventEmitter;
 var inherits = __webpack_require__(0);
 
 inherits(Stream, EE);
@@ -7533,9 +7533,9 @@ function randomBytes (size, cb) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 var inherits = __webpack_require__(0)
-var md5 = __webpack_require__(38)
-var RIPEMD160 = __webpack_require__(39)
-var sha = __webpack_require__(43)
+var md5 = __webpack_require__(39)
+var RIPEMD160 = __webpack_require__(40)
+var sha = __webpack_require__(44)
 
 var Base = __webpack_require__(13)
 
@@ -8431,7 +8431,7 @@ curve.edwards = __webpack_require__(162);
 /* WEBPACK VAR INJECTION */(function(Buffer) {var asn1 = __webpack_require__(178)
 var aesid = __webpack_require__(190)
 var fixProc = __webpack_require__(191)
-var ciphers = __webpack_require__(44)
+var ciphers = __webpack_require__(45)
 var compat = __webpack_require__(66)
 module.exports = parseKeys
 
@@ -8797,6 +8797,7 @@ const Config = __webpack_require__(11)
 const doc = __webpack_require__(26)
 const uri = __webpack_require__(18)
 const graph = __webpack_require__(37)
+const ld = __webpack_require__(38)
 
 const DEFAULT_CONTENT_TYPE = 'text/html; charset=utf-8'
 const LDP_RESOURCE = '<http://www.w3.org/ns/ldp#Resource>; rel="type"'
@@ -9374,7 +9375,7 @@ function postActivity(url, slug, data, options) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-const ld = __webpack_require__(55)
+const ld = __webpack_require__(38)
 global.SimpleRDF = ld.SimpleRDF
 
 const Config = __webpack_require__(11)
@@ -9671,6 +9672,39 @@ function applyParserSerializerFixes(data, contentType) {
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var LdpStore = __webpack_require__(56)
+var SimpleRDF = __webpack_require__(217)
+var N3Parser = __webpack_require__(96)
+var JsonLdParser = __webpack_require__(93)
+var RdfaParser = __webpack_require__(239)
+var RdfXmlParser = __webpack_require__(101)
+var SimpleRDFParse = __webpack_require__(243)
+
+var formats = {parsers: {}}
+formats.parsers['text/turtle'] = N3Parser
+formats.parsers['application/ld+json'] = JsonLdParser
+formats.parsers['application/xhtml+xml'] = RdfaParser
+formats.parsers['text/html'] = RdfaParser
+formats.parsers['application/rdf+xml'] = RdfXmlParser
+var parser = SimpleRDFParse(formats.parsers)
+
+SimpleRDF.parse = parser.parse.bind(parser)
+
+var storeFormats = {parsers:{}}
+storeFormats.parsers['text/turtle'] = N3Parser
+storeFormats.parsers['application/ld+json'] = JsonLdParser
+storeFormats.parsers['application/xhtml+xml'] = RdfaParser
+storeFormats.parsers['text/html'] = RdfaParser
+storeFormats.parsers['application/rdf+xml'] = RdfXmlParser
+
+exports.store = new LdpStore(storeFormats)
+exports.SimpleRDF = SimpleRDF
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 /*
@@ -9826,7 +9860,7 @@ module.exports = function md5 (buf) {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10125,7 +10159,7 @@ module.exports = RIPEMD160
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -10433,7 +10467,7 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11104,7 +11138,7 @@ Writable.prototype._destroy = function (err, cb) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(28).setImmediate, __webpack_require__(4)))
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11382,7 +11416,7 @@ function simpleEnd(buf) {
 }
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var exports = module.exports = function SHA (algorithm) {
@@ -11403,7 +11437,7 @@ exports.sha512 = __webpack_require__(63)
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ciphers = __webpack_require__(134)
@@ -11422,7 +11456,7 @@ exports.listCiphers = exports.getCiphers = getCiphers
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var modeModules = {
@@ -11446,7 +11480,7 @@ module.exports = modes
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11460,7 +11494,7 @@ exports.EDE = __webpack_require__(148);
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {var bn = __webpack_require__(3);
@@ -11507,7 +11541,7 @@ function getr(priv) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var hash = exports;
@@ -11528,7 +11562,7 @@ hash.ripemd160 = hash.ripemd.ripemd160;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12267,7 +12301,7 @@ Url.prototype.parseHost = function() {
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {if (process.browser) {
@@ -12279,7 +12313,7 @@ Url.prototype.parseHost = function() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {// **N3Lexer** tokenizes N3 documents.
@@ -12645,11 +12679,11 @@ module.exports = N3Lexer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28).setImmediate))
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // **N3Parser** parses N3 documents.
-var N3Lexer = __webpack_require__(51);
+var N3Lexer = __webpack_require__(52);
 
 var RDF_PREFIX = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
     RDF_NIL    = RDF_PREFIX + 'nil',
@@ -13351,7 +13385,7 @@ module.exports = N3Parser;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 // **N3Util** provides N3 utility functions
@@ -13473,7 +13507,7 @@ module.exports = addN3Util(addN3Util);
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 // **N3Writer** writes N3 documents.
@@ -13807,39 +13841,6 @@ module.exports = N3Writer;
 
 
 /***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var LdpStore = __webpack_require__(56)
-var SimpleRDF = __webpack_require__(217)
-var N3Parser = __webpack_require__(96)
-var JsonLdParser = __webpack_require__(93)
-var RdfaParser = __webpack_require__(239)
-var RdfXmlParser = __webpack_require__(101)
-var SimpleRDFParse = __webpack_require__(243)
-
-var formats = {parsers: {}}
-formats.parsers['text/turtle'] = N3Parser
-formats.parsers['application/ld+json'] = JsonLdParser
-formats.parsers['application/xhtml+xml'] = RdfaParser
-formats.parsers['text/html'] = RdfaParser
-formats.parsers['application/rdf+xml'] = RdfXmlParser
-var parser = SimpleRDFParse(formats.parsers)
-
-SimpleRDF.parse = parser.parse.bind(parser)
-
-var storeFormats = {parsers:{}}
-storeFormats.parsers['text/turtle'] = N3Parser
-storeFormats.parsers['application/ld+json'] = JsonLdParser
-storeFormats.parsers['application/xhtml+xml'] = RdfaParser
-storeFormats.parsers['text/html'] = RdfaParser
-storeFormats.parsers['application/rdf+xml'] = RdfXmlParser
-
-exports.store = new LdpStore(storeFormats)
-exports.SimpleRDF = SimpleRDF
-
-
-/***/ }),
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14068,7 +14069,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(40).EventEmitter;
+var EE = __webpack_require__(41).EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -14191,7 +14192,7 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(42).StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(43).StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
@@ -14347,7 +14348,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(42).StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(43).StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -15040,7 +15041,7 @@ function indexOf(xs, x) {
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(40).EventEmitter;
+module.exports = __webpack_require__(41).EventEmitter;
 
 
 /***/ }),
@@ -15758,10 +15759,10 @@ var inherits = __webpack_require__(0)
 var Legacy = __webpack_require__(128)
 var Base = __webpack_require__(13)
 var Buffer = __webpack_require__(2).Buffer
-var md5 = __webpack_require__(38)
-var RIPEMD160 = __webpack_require__(39)
+var md5 = __webpack_require__(39)
+var RIPEMD160 = __webpack_require__(40)
 
-var sha = __webpack_require__(43)
+var sha = __webpack_require__(44)
 
 var ZEROS = Buffer.alloc(128)
 
@@ -15878,9 +15879,9 @@ module.exports = defaultEncoding
 /* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var md5 = __webpack_require__(38)
-var rmd160 = __webpack_require__(39)
-var sha = __webpack_require__(43)
+var md5 = __webpack_require__(39)
+var rmd160 = __webpack_require__(40)
+var sha = __webpack_require__(44)
 
 var checkParameters = __webpack_require__(67)
 var defaultEncoding = __webpack_require__(68)
@@ -17989,7 +17990,7 @@ module.exports = AbstractStore
 /* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(205)
 var extend = __webpack_require__(208)
 var statusCodes = __webpack_require__(209)
-var url = __webpack_require__(49)
+var url = __webpack_require__(50)
 
 var http = exports
 
@@ -20655,7 +20656,7 @@ Object.keys(exports).forEach(function (submodule) {
 
 // **N3Store** objects store N3 triples by graph in memory.
 
-var expandPrefixedName = __webpack_require__(53).expandPrefixedName;
+var expandPrefixedName = __webpack_require__(54).expandPrefixedName;
 
 // ## Constructor
 function N3Store(triples, options) {
@@ -21019,7 +21020,7 @@ module.exports = N3Store;
 // **N3StreamParser** parses an N3 stream into a triple stream
 var Transform = __webpack_require__(16).Transform,
     util = __webpack_require__(8),
-    N3Parser = __webpack_require__(52);
+    N3Parser = __webpack_require__(53);
 
 // ## Constructor
 function N3StreamParser(options) {
@@ -21059,7 +21060,7 @@ module.exports = N3StreamParser;
 // **N3StreamWriter** serializes a triple stream into an N3 stream
 var Transform = __webpack_require__(16).Transform,
     util = __webpack_require__(8),
-    N3Writer = __webpack_require__(54);
+    N3Writer = __webpack_require__(55);
 
 // ## Constructor
 function N3StreamWriter(options) {
@@ -21657,7 +21658,7 @@ var uriJoin = function(given, base) {
 // RDF-Interface API
 var rdf = __webpack_require__(6)
 var util = __webpack_require__(8)
-var DomParser = __webpack_require__(50)
+var DomParser = __webpack_require__(51)
 
 var RdfXmlParser = function () {
   DomParser.call(this, rdf)
@@ -22004,7 +22005,7 @@ const inbox = __webpack_require__(244)
 const util = __webpack_require__(35)
 const storage = __webpack_require__(102)
 global.auth = __webpack_require__(245)
-const ld = __webpack_require__(55)
+const ld = __webpack_require__(38)
 
 if(typeof DO === 'undefined'){
 global.SimpleRDF = ld.SimpleRDF
@@ -22016,9 +22017,9 @@ var DO = {
   U: {
     /**
      * Tries to authenticate with given URI. If authenticated, returns the 'User' header value.
-     * 
+     *
      * @param url {string}
-     * @returns {Promise<any>}
+     * @returns {Promise<string>}
     */
     authenticateUser: function(url) {
       url = url || window.location.origin + window.location.pathname;
@@ -22151,10 +22152,6 @@ var DO = {
       });
     },
 
-    /**
-     * @param {Graph} s  a resource
-     * @returns {string}
-     */
     getResourceLabel: function(s) {
       return s.dctermstitle || s['http://purl.org/dc/elements/1.1/title'] || auth.getAgentName(s) || undefined;
     },
@@ -31490,7 +31487,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 /* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(41);
+module.exports = __webpack_require__(42);
 
 
 /***/ }),
@@ -32011,10 +32008,10 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
 /***/ (function(module, exports, __webpack_require__) {
 
 var ebtk = __webpack_require__(29)
-var aes = __webpack_require__(44)
+var aes = __webpack_require__(45)
 var DES = __webpack_require__(143)
 var desModes = __webpack_require__(149)
-var aesModes = __webpack_require__(45)
+var aesModes = __webpack_require__(46)
 function createCipher (suite, password) {
   var keyLen, ivLen
   suite = suite.toLowerCase()
@@ -32344,7 +32341,7 @@ module.exports = HashBase
 /* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MODES = __webpack_require__(45)
+var MODES = __webpack_require__(46)
 var AuthCipher = __webpack_require__(72)
 var Buffer = __webpack_require__(2).Buffer
 var StreamCipher = __webpack_require__(73)
@@ -32737,7 +32734,7 @@ module.exports = GHASH
 
 var AuthCipher = __webpack_require__(72)
 var Buffer = __webpack_require__(2).Buffer
-var MODES = __webpack_require__(45)
+var MODES = __webpack_require__(46)
 var StreamCipher = __webpack_require__(73)
 var Transform = __webpack_require__(13)
 var aes = __webpack_require__(30)
@@ -32863,7 +32860,7 @@ exports.createDecipheriv = createDecipheriv
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {var CipherBase = __webpack_require__(13)
-var des = __webpack_require__(46)
+var des = __webpack_require__(47)
 var inherits = __webpack_require__(0)
 
 var modes = {
@@ -33329,7 +33326,7 @@ Cipher.prototype._finalDecrypt = function _finalDecrypt() {
 var assert = __webpack_require__(9);
 var inherits = __webpack_require__(0);
 
-var des = __webpack_require__(46);
+var des = __webpack_require__(47);
 var utils = des.utils;
 var Cipher = des.Cipher;
 
@@ -33551,7 +33548,7 @@ proto._update = function _update(inp, inOff, out, outOff) {
 var assert = __webpack_require__(9);
 var inherits = __webpack_require__(0);
 
-var des = __webpack_require__(46);
+var des = __webpack_require__(47);
 var Cipher = des.Cipher;
 var DES = des.DES;
 
@@ -33975,7 +33972,7 @@ module.exports = {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// much of this based on https://github.com/indutny/self-signed/blob/gh-pages/lib/rsa.js
 var createHmac = __webpack_require__(64)
-var crt = __webpack_require__(47)
+var crt = __webpack_require__(48)
 var EC = __webpack_require__(7).ec
 var BN = __webpack_require__(3)
 var parseKeys = __webpack_require__(32)
@@ -36217,7 +36214,7 @@ Point.prototype.mixedAdd = Point.prototype.add;
 
 var curves = exports;
 
-var hash = __webpack_require__(48);
+var hash = __webpack_require__(49);
 var elliptic = __webpack_require__(7);
 
 var assert = elliptic.utils.assert;
@@ -37841,7 +37838,7 @@ EC.prototype.getKeyRecoveryParam = function(e, signature, Q, enc) {
 "use strict";
 
 
-var hash = __webpack_require__(48);
+var hash = __webpack_require__(49);
 var utils = __webpack_require__(78);
 var assert = __webpack_require__(9);
 
@@ -38229,7 +38226,7 @@ Signature.prototype.toDER = function toDER(enc) {
 "use strict";
 
 
-var hash = __webpack_require__(48);
+var hash = __webpack_require__(49);
 var elliptic = __webpack_require__(7);
 var utils = elliptic.utils;
 var assert = utils.assert;
@@ -39905,7 +39902,7 @@ var findProc = /Proc-Type: 4,ENCRYPTED\n\r?DEK-Info: AES-((?:128)|(?:192)|(?:256
 var startRegex = /^-----BEGIN ((?:.* KEY)|CERTIFICATE)-----\n/m
 var fullRegex = /^-----BEGIN ((?:.* KEY)|CERTIFICATE)-----\n\r?([0-9A-z\n\r\+\/\=]+)\n\r?-----END \1-----$/m
 var evp = __webpack_require__(29)
-var ciphers = __webpack_require__(44)
+var ciphers = __webpack_require__(45)
 module.exports = function (okey, password) {
   var key = okey.toString()
   var match = key.match(findProc)
@@ -40178,7 +40175,7 @@ var mgf = __webpack_require__(87);
 var xor = __webpack_require__(88);
 var bn = __webpack_require__(3);
 var withPublic = __webpack_require__(89);
-var crt = __webpack_require__(47);
+var crt = __webpack_require__(48);
 
 var constants = {
   RSA_PKCS1_OAEP_PADDING: 4,
@@ -40276,7 +40273,7 @@ function nonZero(len, crypto) {
 var mgf = __webpack_require__(87);
 var xor = __webpack_require__(88);
 var bn = __webpack_require__(3);
-var crt = __webpack_require__(47);
+var crt = __webpack_require__(48);
 var createHash = __webpack_require__(20);
 var withPublic = __webpack_require__(89);
 module.exports = function privateDecrypt(private_key, enc, reverse) {
@@ -41097,7 +41094,7 @@ module.exports = utils.mixin
 
 var http = __webpack_require__(91)
 var https = __webpack_require__(215)
-var url = __webpack_require__(49)
+var url = __webpack_require__(50)
 
 var utils = {}
 
@@ -42558,7 +42555,7 @@ var objectKeys = Object.keys || function (obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var http = __webpack_require__(91)
-var url = __webpack_require__(49)
+var url = __webpack_require__(50)
 
 var https = module.exports
 
@@ -51805,7 +51802,7 @@ function packF32(v) { return packIEEE754(v, 8, 23); }
 
 var rdf = __webpack_require__(6)
 var util = __webpack_require__(8)
-var DomParser = __webpack_require__(50)
+var DomParser = __webpack_require__(51)
 var URIResolver = __webpack_require__(230)
 
 var MicrodataProcessor = function () {
@@ -53310,20 +53307,20 @@ module.exports = URIResolver;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./N3Lexer": 51,
-	"./N3Lexer.js": 51,
-	"./N3Parser": 52,
-	"./N3Parser.js": 52,
+	"./N3Lexer": 52,
+	"./N3Lexer.js": 52,
+	"./N3Parser": 53,
+	"./N3Parser.js": 53,
 	"./N3Store": 98,
 	"./N3Store.js": 98,
 	"./N3StreamParser": 99,
 	"./N3StreamParser.js": 99,
 	"./N3StreamWriter": 100,
 	"./N3StreamWriter.js": 100,
-	"./N3Util": 53,
-	"./N3Util.js": 53,
-	"./N3Writer": 54,
-	"./N3Writer.js": 54
+	"./N3Util": 54,
+	"./N3Util.js": 54,
+	"./N3Writer": 55,
+	"./N3Writer.js": 55
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -53972,7 +53969,7 @@ module.exports = Context;
 
 var rdf = __webpack_require__(6)
 var inherits = __webpack_require__(0)
-var DomParser = __webpack_require__(50)
+var DomParser = __webpack_require__(51)
 var RDFaProcessor = __webpack_require__(240).RDFaProcessor
 
 var RdfaParser = function () {
