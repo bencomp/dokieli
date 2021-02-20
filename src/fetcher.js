@@ -459,7 +459,7 @@ function putResource (url, data, contentType, links, options = {}) {
   options.headers['Content-Type'] = contentType || DEFAULT_CONTENT_TYPE
 
   links = links
-    ? LDP_RESOURCE + ', ' + links
+    ? links
     : LDP_RESOURCE
 
   options.headers['Link'] = links

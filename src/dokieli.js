@@ -3582,7 +3582,7 @@ console.log('//TODO: Handle server returning wrong Response/Content-Type for the
         e.target.insertAdjacentHTML('afterend', '<progress min="0" max="100" value="0"></progress>')
         progress = saveAsDocument.querySelector('progress')
 
-        fetcher.putResource(storageIRI, html, null, null, { 'progress': progress })
+        fetcher.putResource(storageIRI, html, null, '<http://www.w3.org/ns/ldp#NonRDFSource>; rel="type"', { 'progress': progress })
 
           .then(response => {
             progress.parentNode.removeChild(progress)
@@ -3601,6 +3601,7 @@ console.log('//TODO: Handle server returning wrong Response/Content-Type for the
 
           .catch(error => {
             console.error('Error saving document', error)
+            console.error('Response', error.response)
 
             let message
 
